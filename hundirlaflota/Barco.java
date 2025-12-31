@@ -2,63 +2,63 @@ package hundirlaflota;
 
 import java.util.ArrayList;
 //Clase anidada Coordenadas con solo el método constructor
-	
 
 public class Barco {
 	private ArrayList<Coordenadas> barco;
-	
+
 	public Barco() {
 
 		this.barco = new ArrayList<>();
 	}
-	
+
 	public ArrayList<Coordenadas> getBarco() {
 		return barco;
 	}
-	
 
 	// Método para añadir una coordenada
 	public void addCoordenada(Coordenadas coordenada) {
 		barco.add(coordenada);
 	}
-	public void eliminarCoordenada (Coordenadas coordenada) {
+
+	public void eliminarCoordenada(Coordenadas coordenada) {
 		barco.remove(coordenada);
 	}
 
-	
-	
+	// Eliminar todas las coordenada de un barco (inicializar)
+	public void clear() {
+		barco.clear();
+	}
 
-	
-	//Creo un barco de numero posiciones 
+	// Creo un barco de numero posiciones indicado por argumento
 	public Barco coordenadas(int numero) {
-		Barco barco=new Barco();
+		int fila, columna;
+
+		// Elegimos posición horizontal o vertical
 		int posicion = (int) (Math.random() * 2);
+		// Posición horizontal
 		if (posicion < 1) {
-			int fila = (int) (Math.random() * (10 - numero));
-			int columna = (int) (Math.random() * (10));
+			fila = (int) (Math.random() * (10 - numero));
+			columna = (int) (Math.random() * (10));
 			for (int i = 0; i < numero; i++)
-
-				barco.addCoordenada(new Coordenadas(fila+i, columna));
+				this.addCoordenada(new Coordenadas(fila + i, columna));
 		} else {
-			int fila = (int) (Math.random() * (10));
-			int columna = (int) (Math.random() * (10 - numero));
+			// Posición vertical
+			fila = (int) (Math.random() * (10));
+			columna = (int) (Math.random() * (10 - numero));
 			for (int i = 0; i < numero; i++)
-
-				barco.addCoordenada(new Coordenadas(fila, columna+i));
+				this.addCoordenada(new Coordenadas(fila, columna + i));
 
 		}
-		return barco;
+		return this;
 
 	}
 
 	// Método para mostrar todas las coordenadas
-		public void mostrarCoordenadas() {
-			System.out.println("Barco de largo " );
-			for (Coordenadas c : barco) {
-				System.out.println(c.toString());
-			}
+	public void mostrarCoordenadas() {
+		System.out.println("Barco:");
+		for (Coordenadas c : barco) {
+			System.out.println(c.toString());
 		}
-	
-	
-	
+	}
+
 }
