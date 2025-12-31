@@ -2,31 +2,29 @@ package hundirlaflota;
 
 public class Main {
 	public static void main(String[] args) {
-		boolean partida=true;
-		Barco b=new Barco();
+		System.out.println("Bienvenido al hundir la flota, tienes que hundir 4 barcos ( 5,4,3 y 2 posiciones)\nNo pueden estar pegados entre ellos \nTiene máximo de 50 tiradas.\nSuerte");
+		boolean partida = true;
+		int tiradas = 0;
 		Juego barcos = new Juego();
-		for (int i=2;i<6;i++) {
-		barcos.flota.add(b.coordenadas(i));}
-		System.out.println(barcos.flota.size());
+		barcos.crearFlota();
 		barcos.imprimirTablero();
-//for (Barco barco : barcos.getFlota()) 
-	//barco.mostrarCoordenadas();
-while(partida) {
-	barcos.jugar();
-	barcos.imprimirTablero();
-	System.out.println("Quedan " + barcos.flota.size()+ " barcos");
-	if (barcos.flota.size()==0) partida=false;
-}	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		while (partida) {
+			System.out.println("Tirada: " + (tiradas+1));
+			barcos.jugar();
+			barcos.imprimirTablero();
+			System.out.println("Quedan " + barcos.flota.size() + " barcos");
+			tiradas++;
+			if (barcos.flota.size() == 0 || tiradas == 50)
+				partida = false;
+		}
+		if (barcos.flota.size() == 0)
+			System.out.println("Ganaste");
+		else {
+			System.out.println("Tiradas acabadas, faltan estos objetivos");
+			for (Barco barco : barcos.getFlota())
+				barco.mostrarCoordenadas();
+		}
+
 	}
 
 }
